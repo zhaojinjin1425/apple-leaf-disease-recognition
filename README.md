@@ -10,26 +10,8 @@ Knowledge graph representation: Disease-related knowledge is organized into trip
 Visual-knowledge fusion: A query-key-based knowledge selection mechanism is used to select relevant knowledge according to the input image, followed by bilinear interaction for visual-knowledge fusion.
 
 The overall framework is designed for five apple leaf disease categories.
-2. Repository Structure
-text
-apple-leaf-disease-recognition/
-├── fusion/
-│   ├── plot_confusion_matrix.py
-│   ├── qk_img_model1.py
-│   └── test_qk_img_model1.py
-├── img/
-│   ├── img_model1.py
-│   └── test_img_model1.py
-├── kg/
-│   ├── class_labels.csv
-│   ├── generate_labels.py
-│   ├── id.txt
-│   ├── kg_embedding_M.csv
-│   ├── train_kge.py
-│   └── triples.txt
-├── requirements.txt
-└── README.md
-3. Environment
+
+2. Environment
 The implementation was developed and tested with:
 Python 3.x
 PyTorch 2.0.0
@@ -37,6 +19,7 @@ torchvision 0.15.1
 CUDA 11.8
 Install the required Python packages using:
 pip install -r requirements.txt
+
 4. Dataset
 The experiments use publicly available apple leaf disease datasets.
 The dataset contains six classes, including five disease categories and healthy leaves. The knowledge graph is constructed for the five disease categories.
