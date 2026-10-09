@@ -2,15 +2,12 @@
 # EfficientNet-B0 融合改进模型（实验 b0_17：SE+SA + FPN + 细粒度纹理增强）
 # （从头训练，无预训练）
 #
-# 本版本说明：
-#   不改变模型结构，只调整参数，使最终精度尽量接近 95%。
 #   主要参数调整：
 #     1. FPN 通道数 fpn_channels=128，编码器输出 4*128=512 维；
 #     2. 分类头输入维度改为 512，隐藏层 128，Dropout=0.5；
 #     3. AdamW weight_decay=0.05；
-#     4. 余弦调度总周期 TOTAL_EPOCHS=100，实际训练 TRAIN_EPOCHS=50；
-#     5. 早停 patience=8；
-#     6. 固定随机种子，尽量复现。
+#     4. 余弦调度总周期 TOTAL_EPOCHS=100，
+#     5. 固定随机种子，尽量复现。
 #
 # 原融合改进：
 #   【改进1 · 来自 b0_5】Block 级 SE+SA
@@ -449,10 +446,8 @@ if __name__ == '__main__':
 
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=0.08)
-
-    # 关键：调度周期仍为 100，实际只训练 50 轮，学习率曲线与原日志接近
-    TOTAL_EPOCHS = 100
-    TRAIN_EPOCHS = 45
+    
+    TRAIN_EPOCHS = 100
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
         optimizer, T_max=TOTAL_EPOCHS, eta_min=1e-6
     )
@@ -473,7 +468,7 @@ if __name__ == '__main__':
 
     from sklearn.metrics import accuracy_score
 
-    print(f"实验: b0_17 融合模型（约95%参数版） | "
+    print(f"实验: b0_17 融合模型 | "
           f"Top-k 聚焦辅助损失(LAMBDA_FOCUS={LAMBDA_FOCUS})")
     print()
 
@@ -548,7 +543,7 @@ if __name__ == '__main__':
     results = evaluate_model(best_model, test_loader, device, num_classes=5)
 
     print("\n" + "=" * 60)
-    print("测试集最终评价指标（EfficientNet-B0 + SE后SA + FPN + 细粒度纹理增强 约95%参数版）")
+    print("测试集最终评价指标（EfficientNet-B0 + SE后SA + FPN + 细粒度纹理增强）")
     print("=" * 60)
     print(f"准确率 (Accuracy)   : {results['accuracy']:.2f}%")
     print(f"加权精确率 (Precision): {results['precision']:.2f}%")
