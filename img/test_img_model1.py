@@ -1,11 +1,7 @@
 # ==============================================================================
 # 读取 img_model1.py 训练好的模型，对 test_input 文件夹中的图片进行预测并
 # 生成多层级 FPN 融合的 Grad-CAM++ 热力图可视化结果，保存到 test_output 文件夹。
-#
-# 模型参数与 img_model1.py 完全一致：
-#   - fpn_channels = 40
-#   - dropout_rate = 0.65
-#   - 随机种子固定，模型权重文件为 best_image_classifier_scratch_efficientnet_b0_17_controlled1.pth
+ 随机种子固定，模型权重文件为 best_image_classifier_scratch_efficientnet_b0_17_controlled1.pth
 #
 # 可视化逻辑与 test_efficientnet_b0_17.py 相同：
 #   - 对 FPN 的 4 个 smooth 层分别计算 Grad-CAM++
@@ -166,7 +162,7 @@ def generate_multi_level_cam(model, input_tensor, target_class=None, return_laye
 # ============================
 if __name__ == '__main__':
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-    # 注意：模型文件名与 img_model1.py 中保存的一致
+
     MODEL_PATH = os.path.join(SCRIPT_DIR, 'best_image_classifier_scratch_efficientnet_b0_17_controlled1.pth')
     INPUT_DIR = os.path.join(SCRIPT_DIR, 'test_input')
     OUTPUT_DIR = os.path.join(SCRIPT_DIR, 'test_output', 'test_img_model1_multilevel_cam')
@@ -186,9 +182,8 @@ if __name__ == '__main__':
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"使用设备: {device}")
 
-    # ---------- 模型超参数（必须与 img_model1.py 训练时一致） ----------
     FPN_CHANNELS = 40      # 训练时设定的值
-    DROPOUT_RATE = 0.65    # 训练时设定的值
+    DROPOUT_RATE = 0.45    # 训练时设定的值
 
     # 实例化模型并加载权重
     model = ImageClassifier(num_classes=5, fpn_channels=FPN_CHANNELS, dropout_rate=DROPOUT_RATE).to(device)
