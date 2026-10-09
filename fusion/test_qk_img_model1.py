@@ -1,7 +1,7 @@
 # ==============================================================================
 # test_qk_sinet.py - QK-SINet 测试与多层级 FPN 融合 Grad-CAM++ 可视化
 # 适配 qk_img_model1.py 训练的模型（ImageEncoder FPN通道128，输出512维）
-# 位置: lunwen/628/fusion/test_qk_sinet.py
+
 # ==============================================================================
 import os
 import sys
@@ -167,7 +167,6 @@ if __name__ == '__main__':
         print(f"错误：找不到输入图片文件夹 {INPUT_DIR}")
         sys.exit(1)
 
-    # 英文类别名，和你论文图保持一致
     CLASS_NAMES = ['alternaria leaf spot', 'brown spot', 'mosaic', 'powdery mildew', 'rust']
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"使用设备: {device}")
