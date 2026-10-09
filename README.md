@@ -1,30 +1,33 @@
-Apple Leaf Disease Classification Using Enhanced Visual Features and Knowledge Graph
-This repository contains the implementation of the method proposed in the paper:
-Apple Leaf Disease Classification Using Enhanced Visual Features and Knowledge Graph
-The proposed framework integrates enhanced visual feature representation with domain knowledge from a knowledge graph for apple leaf disease classification. The visual branch uses an improved EfficientNet-B0 to enhance disease-related visual representations, while the knowledge branch incorporates disease-related semantic knowledge. A query-key-based knowledge selection mechanism and bilinear interaction are employed to facilitate visual-knowledge fusion.
+ 基于增强视觉特征与知识图谱的苹果叶片病害分类
+本仓库为论文《基于增强视觉特征与知识图谱的苹果叶片病害分类》所提方法的代码实现。
+该框架将增强视觉特征表示与知识图谱中的领域知识相结合，用于苹果叶片病害分类。视觉分支采用改进的 EfficientNet网络，强化病害相关视觉特征表达；知识分支则引入病害相关语义知识。模型基于查询 - 键机制实现知识筛选，并利用双线性交互完成视觉特征与知识的融合。
+## 1. 方法概述
+该框架主要包含三大模块：
+- **增强视觉特征提取**：采用改进 EfficientNet-B0，从苹果叶片图像中提取具有区分度的视觉特征。
+- **知识图谱表征**：将病害相关知识组织为三元组，并映射到连续特征空间。
+- **视觉 - 知识融合**：基于查询 - 键知识筛选机制，依据输入图像挑选相关知识，再通过双线性交互实现视觉信息与知识的融合。
+整套框架面向 5 类苹果叶片病害构建。
+## 2. 运行环境
+代码开发与测试环境如下：
+- Python 3.x
+- PyTorch 2.0.0
+- torchvision 0.15.1
+- CUDA 11.8
+执行以下命令安装 Python 依赖包：
 
- 1. Method Overview
-The framework consists of three main components:
-Enhanced visual feature extraction: An improved EfficientNet-B0 is used to extract discriminative visual features from apple leaf images.
-Knowledge graph representation: Disease-related knowledge is organized into triples and embedded into a continuous feature space.
-Visual-knowledge fusion: A query-key-based knowledge selection mechanism is used to select relevant knowledge according to the input image, followed by bilinear interaction for visual-knowledge fusion.
-
-The overall framework is designed for five apple leaf disease categories.
-
-2. Environment
-The implementation was developed and tested with:
-Python 3.x
-PyTorch 2.0.0
-torchvision 0.15.1
-CUDA 11.8
-Install the required Python packages using:
+```
 pip install -r requirements.txt
+```
 
-4. Dataset
-The experiments use publicly available apple leaf disease datasets.
-The dataset contains six classes, including five disease categories and healthy leaves. The knowledge graph is constructed for the five disease categories.
-The datasets used in this study include:
-PlantVillage
-AppleLeaf9
-Plant Pathology 2021-FGVC8
-Please obtain the datasets from their original sources and organize them according to the paths required by the training scripts.
+## 4. 数据集
+
+实验采用公开苹果叶片病害数据集。
+数据集共 5 个类别，包含 5 类病害叶片样本；知识图谱针对 5 类病害构建。
+
+本研究使用的公开数据集如下：
+
+- PlantVillage
+- AppleLeaf9
+- Plant Pathology 2021-FGVC8
+
+请从数据集原始来源获取数据，并按照训练脚本要求配置文件路径。
