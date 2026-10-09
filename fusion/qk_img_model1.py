@@ -1,7 +1,6 @@
 # ============================================================
 # qk_img_model1.py - 三元组级 Query-Key 选择融合 SINet
 # 视觉编码器改用 img_model1.py 中的 ImageEncoder（FPN 通道 128，输出 512 维）
-# 位置: lunwen/628/fusion/qk_img_model1.py
 # ============================================================
 import os
 import sys
