@@ -1,7 +1,6 @@
 # ============================================================
 # plot_confusion_matrix.py
 # 加载 QK-SINet 最优权重，在测试集上生成混淆矩阵
-# 所有输出保存到 D:\pythonlearning\lunwen\628\fusion\matrix
 # ============================================================
 import os
 import sys
